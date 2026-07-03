@@ -102,32 +102,36 @@
                     
                     <div class="wok-options-grid">
                         <div class="wok-option-column">
-                            <h4>1. Carbohidratos</h4>
-                            <ul>
-                                <li>Pasta</li>
-                                <li>Arroz</li>
-                                <li>Pasta Integral</li>
-                            </ul>
+                            <label class="wok-select-label" for="wok-carbo">1. Carbohidrato</label>
+                            <select id="wok-carbo" class="wok-select">
+                                <option value="" disabled selected>Elige uno...</option>
+                                <option value="Pasta">Pasta</option>
+                                <option value="Arroz">Arroz</option>
+                                <option value="Pasta Integral">Pasta Integral</option>
+                            </select>
                         </div>
                         <div class="wok-option-column">
-                            <h4>2. Salsas</h4>
-                            <ul>
-                                <li>Blanca</li>
-                                <li>Tomate</li>
-                                <li>Mixta</li>
-                            </ul>
-                            <p class="wok-sub-note">Salsa adicional (Elige 1): Soya o Teriyaki</p>
+                            <label class="wok-select-label" for="wok-salsa">2. Salsa</label>
+                            <select id="wok-salsa" class="wok-select">
+                                <option value="" disabled selected>Elige una...</option>
+                                <option value="Blanca">Blanca</option>
+                                <option value="Tomate">Tomate</option>
+                                <option value="Mixta">Mixta</option>
+                                <option value="Soya">Soya (Adicional)</option>
+                                <option value="Teriyaki">Teriyaki (Adicional)</option>
+                            </select>
                         </div>
                         <div class="wok-option-column">
-                            <h4>3. Proteínas</h4>
-                            <ul>
-                                <li>Carne</li>
-                                <li>Pollo</li>
-                                <li>Champiñón</li>
-                                <li>Vegetales Salteados</li>
-                                <li>Choclo</li>
-                                <li>Aceituna</li>
-                            </ul>
+                            <label class="wok-select-label" for="wok-proteina">3. Proteína</label>
+                            <select id="wok-proteina" class="wok-select">
+                                <option value="" disabled selected>Elige una...</option>
+                                <option value="Carne">Carne</option>
+                                <option value="Pollo">Pollo</option>
+                                <option value="Champiñón">Champiñón</option>
+                                <option value="Vegetales Salteados">Vegetales Salteados</option>
+                                <option value="Choclo">Choclo</option>
+                                <option value="Aceituna">Aceituna</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -254,15 +258,33 @@
         }
 
         function configurarBotonWokEstatico() {
-            // Configurar únicamente el botón del "Arma tu Wok" que dejamos fijo en HTML
             const wokBtn = document.querySelector('.wok-add-btn');
             if (wokBtn) {
                 wokBtn.addEventListener('click', (e) => {
+                    // Capturar lo que el cliente eligió
+                    const carbo = document.getElementById('wok-carbo').value;
+                    const salsa = document.getElementById('wok-salsa').value;
+                    const proteina = document.getElementById('wok-proteina').value;
+
+                    // Validar que no falte nada
+                    if (!carbo || !salsa || !proteina) {
+                        alert("¡Oye! Faltan ingredientes. Por favor elige tu carbohidrato, salsa y proteína antes de armar el wok.");
+                        return; // Detiene la ejecución si falta algo
+                    }
+
+                    // Construir el nombre dinámico del producto
+                    const name = `Wok Personalizado (${carbo} + ${salsa} + ${proteina})`;
+                    
                     const container = e.target.closest('.wok-card-main');
-                    const name = "Arma tu Wok personalizado";
                     const priceStr = container.querySelector('.wok-main-price').innerText;
                     const price = parseInt(priceStr.replace('$', '').replace('.', ''));
+                    
                     addToCart(name, price);
+
+                    // Opcional: Reiniciar los selectores después de agregarlo al carrito
+                    document.getElementById('wok-carbo').value = "";
+                    document.getElementById('wok-salsa').value = "";
+                    document.getElementById('wok-proteina').value = "";
                 });
             }
         }
