@@ -27,6 +27,9 @@
         <main class="links" id="seccion-enlaces">
             <!-- Botón Carta -->
             <button class="link-btn" onclick="mostrarCarta()">
+                <div class="btn-icon">
+                    <img src="fotoMenu.png" alt="Instagram" class="img-icon">
+                </div>
                 <span>Carta</span>
             </button>
 
@@ -329,7 +332,7 @@
                 total += item.price;
             });
 
-            text += `%0ATotal a pagar: $${total.toLocaleString('es-CL')}%0A%0AQuedo atento para coordinar.`;
+            text += `%0ATotal a pagar: $${total.toLocaleString('es-CL')}%0A%0AQuedo atento.`;
 
             const url = `https://wa.me/${telefonoLocal}?text=${text}`;
             window.open(url, '_blank');
