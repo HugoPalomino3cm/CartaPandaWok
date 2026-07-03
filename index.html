@@ -86,7 +86,6 @@
             <div class="menu-category">
                 <h3 class="category-title">ARMA TU WOK</h3>
                 <div class="wok-builder-card">
-                    <!-- Imagen de referencia para el encabezado del Wok Builder -->
                     <div class="wok-banner-container">
                         <img src="https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=800&q=80" alt="Arma tu Wok" class="wok-banner-img">
                     </div>
@@ -94,7 +93,8 @@
                     <div class="wok-card-main">
                         <div>
                             <span class="wok-label">Arma tu Wok personalizado</span><br>
-                            <span class="wok-main-price">$3.990</span>
+                            <!-- El precio ahora tiene un ID para cambiarlo con JS -->
+                            <span class="wok-main-price" id="precio-dinamico-wok">Cargando...</span>
                         </div>
                         <button class="add-btn-floating wok-add-btn" style="position: relative; top: 0; right: 0;">+</button>
                     </div>
@@ -105,32 +105,21 @@
                             <label class="wok-select-label" for="wok-carbo">1. Carbohidrato</label>
                             <select id="wok-carbo" class="wok-select">
                                 <option value="" disabled selected>Elige uno...</option>
-                                <option value="Pasta">Pasta</option>
-                                <option value="Arroz">Arroz</option>
-                                <option value="Pasta Integral">Pasta Integral</option>
+                                <!-- Las opciones cargarán desde Google Sheets -->
                             </select>
                         </div>
                         <div class="wok-option-column">
                             <label class="wok-select-label" for="wok-salsa">2. Salsa</label>
                             <select id="wok-salsa" class="wok-select">
                                 <option value="" disabled selected>Elige una...</option>
-                                <option value="Blanca">Blanca</option>
-                                <option value="Tomate">Tomate</option>
-                                <option value="Mixta">Mixta</option>
-                                <option value="Soya">Soya (Adicional)</option>
-                                <option value="Teriyaki">Teriyaki (Adicional)</option>
+                                <!-- Las opciones cargarán desde Google Sheets -->
                             </select>
                         </div>
                         <div class="wok-option-column">
                             <label class="wok-select-label" for="wok-proteina">3. Proteína</label>
                             <select id="wok-proteina" class="wok-select">
                                 <option value="" disabled selected>Elige una...</option>
-                                <option value="Carne">Carne</option>
-                                <option value="Pollo">Pollo</option>
-                                <option value="Champiñón">Champiñón</option>
-                                <option value="Vegetales Salteados">Vegetales Salteados</option>
-                                <option value="Choclo">Choclo</option>
-                                <option value="Aceituna">Aceituna</option>
+                                <!-- Las opciones cargarán desde Google Sheets -->
                             </select>
                         </div>
                     </div>

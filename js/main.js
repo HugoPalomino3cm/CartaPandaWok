@@ -36,17 +36,46 @@ function renderizarMenu(productos) {
     const gridEspecialidades = document.getElementById('grid-especialidades');
     const gridBebidas = document.getElementById('grid-bebidas');
     const gridExtras = document.getElementById('grid-extras');
+            
+    const selectCarbo = document.getElementById('wok-carbo');
+    const selectSalsa = document.getElementById('wok-salsa');
+    const selectProteina = document.getElementById('wok-proteina');
+    const precioWokText = document.getElementById('precio-dinamico-wok');
 
     productos.forEach(prod => {
-        // Saltar filas vacías
-        if (!prod.Nombre || !prod.Precio) return;
+        const categoria = prod.Categoria ? prod.Categoria.trim().toUpperCase() : "";
+
+        // 1. Configurar precio base del Wok
+        if (categoria === 'PRECIO_WOK') {
+            const precioBase = parseInt(prod.Precio);
+            precioWokText.innerText = '$' + precioBase.toLocaleString('es-CL');
+            precioWokText.dataset.precio = precioBase; // Guardamos el valor exacto oculto
+            return; // Terminamos con esta fila
+        }
+
+        // 2. Llenar los menús desplegables de ingredientes
+        if (categoria === 'CARBOHIDRATO' && prod.Nombre) {
+            selectCarbo.innerHTML += `<option value="${prod.Nombre}">${prod.Nombre}</option>`;
+            return;
+        }
+        if (categoria === 'SALSA' && prod.Nombre) {
+            selectSalsa.innerHTML += `<option value="${prod.Nombre}">${prod.Nombre}</option>`;
+            return;
+        }
+        if (categoria === 'PROTEINA' && prod.Nombre) {
+            selectProteina.innerHTML += `<option value="${prod.Nombre}">${prod.Nombre}</option>`;
+            return;
+        }
+
+        // 3. Renderizar las tarjetas normales (Especialidades, Bebidas, Extras)
+        if (!prod.Nombre || !prod.Precio) return; 
 
         const precioNum = parseInt(prod.Precio);
         const precioFormateado = precioNum.toLocaleString('es-CL');
 
         const cardHTML = `
             <div class="menu-card">
-                <img src="${prod.Imagen}" alt="${prod.Nombre}" class="card-img">
+                   <img src="${prod.Imagen}" alt="${prod.Nombre}" class="card-img">
                 <div class="card-overlay">
                     <button class="add-btn-floating dynamic-add-btn" onclick="addToCart('${prod.Nombre}', ${precioNum})">+</button>
                     <h4 class="card-item-title">${prod.Nombre}</h4>
@@ -56,8 +85,6 @@ function renderizarMenu(productos) {
             </div>
         `;
 
-        // Clasificar en su contenedor correspondiente
-        const categoria = prod.Categoria.trim().toUpperCase();
         if (categoria === 'ESPECIALIDADES') gridEspecialidades.innerHTML += cardHTML;
         if (categoria === 'BEBIDAS') gridBebidas.innerHTML += cardHTML;
         if (categoria === 'EXTRAS') gridExtras.innerHTML += cardHTML;
@@ -68,27 +95,23 @@ function configurarBotonWokEstatico() {
     const wokBtn = document.querySelector('.wok-add-btn');
     if (wokBtn) {
         wokBtn.addEventListener('click', (e) => {
-            // Capturar lo que el cliente eligió
             const carbo = document.getElementById('wok-carbo').value;
             const salsa = document.getElementById('wok-salsa').value;
             const proteina = document.getElementById('wok-proteina').value;
 
-            // Validar que no falte nada
             if (!carbo || !salsa || !proteina) {
-                alert("¡Oye! Faltan ingredientes. Por favor elige tu carbohidrato, salsa y proteína antes de armar el wok.");
-                return; // Detiene la ejecución si falta algo
+                alert("Faltan ingredientes. Por favor elige tu carbohidrato, salsa y proteína.");
+                return; 
             }
 
-            // Construir el nombre dinámico del producto
             const name = `Wok Personalizado (${carbo} + ${salsa} + ${proteina})`;
-
-            const container = e.target.closest('.wok-card-main');
-            const priceStr = container.querySelector('.wok-main-price').innerText;
-            const price = parseInt(priceStr.replace('$', '').replace('.', ''));
-
+                    
+            // Extraer el precio que guardamos desde Google Sheets
+            const priceElement = document.getElementById('precio-dinamico-wok');
+            const price = parseInt(priceElement.dataset.precio);
+                    
             addToCart(name, price);
 
-            // Opcional: Reiniciar los selectores después de agregarlo al carrito
             document.getElementById('wok-carbo').value = "";
             document.getElementById('wok-salsa').value = "";
             document.getElementById('wok-proteina').value = "";
