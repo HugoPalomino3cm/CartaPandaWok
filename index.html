@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wok Placeres | Enlaces y Carta</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Encabezado / Perfil -->
+        <header class="profile">
+            <!-- Mantengo tu logo local -->
+            <img src="logo.png" alt="Wok Placeres Logo" class="profile-img">
+            <h1 class="username">@WokPlaceres</h1>
+            <p class="description">
+                Disfruta comida rápida deliciosa, fusión oriental-chilena, <br>¡sabores únicos que te sorprenderán!
+            </p>
+        </header>
+
+        <!-- SECCIÓN 1: Enlaces Principales -->
+        <main class="links" id="seccion-enlaces">
+            <!-- Botón Carta -->
+            <button class="link-btn" onclick="mostrarCarta()">
+                <span>Carta</span>
+            </button>
+
+            <!-- Enlace a Instagram -->
+            <a href="https://www.instagram.com/wokplaceres/" target="_blank" class="link-btn">
+                <div class="btn-icon">
+                    <img src="logoIg.png" alt="Instagram" class="img-icon">
+                </div>
+                <span>Instagram</span>
+            </a>
+
+            <!-- Enlace a Facebook -->
+            <a href="https://www.facebook.com/profile.php?id=61590217135213&locale=es_LA" target="_blank" class="link-btn">
+                <div class="btn-icon">
+                    <img src="logoFB.png" alt="Facebook" class="img-icon">
+                </div>
+                <span>Facebook</span>
+            </a>
+
+            <!-- Enlace a Google Maps -->
+            <a href="https://maps.app.goo.gl/T43ZstgZ4UAZXwUc7" target="_blank" class="link-btn">
+                <div class="btn-icon">
+                    <img src="logoMaps.png" alt="Maps" class="img-icon">
+                </div>
+                <div class="btn-text-group">
+                    <span>Dónde encontrarnos</span>
+                    <small>Los Placeres 1270, Valparaíso</small>
+                </div>
+            </a>
+
+            <!-- Botón de Reseñas -->
+            <a href="https://www.google.com/maps/place/Wok+Placeres/@-33.034158,-71.5890897,17z/data=!4m8!3m7!1s0x9689e1d2c76f2ae7:0xa694606d04e77b39!8m2!3d-33.034158!4d-71.5890897!9m1!1b1!16s%2Fg%2F11npr1xldf?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="link-btn highlight">
+                <div class="btn-icon">
+                    <img src="posible.png" alt="Reseña" class="img-icon">
+                </div>
+                <span>Déjanos una reseña</span>
+            </a>
+        </main>
+
+        <!-- SECCIÓN 2: Apartado Exclusivo de la Carta -->
+        <section id="seccion-carta" class="menu-section seccion-oculta">
+            <!-- Botón para regresar -->
+            <button class="back-btn" onclick="mostrarEnlaces()">Atrás</button>
+
+            <header class="menu-header">
+                <h2 class="menu-title">WOK PLACERES</h2>
+                <p class="menu-subtitle">FRESCO, RÁPIDO Y PREPARADO AL MOMENTO</p>
+            </header>
+
+            <!-- Categoría: Arma tu Wok -->
+            <div class="menu-category">
+                <h3 class="category-title">ARMA TU WOK</h3>
+                <div class="wok-builder-card">
+                    <!-- Imagen de referencia para el encabezado del Wok Builder -->
+                    <div class="wok-banner-container">
+                        <img src="https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=800&q=80" alt="Arma tu Wok" class="wok-banner-img">
+                    </div>
+                    
+                    <div class="wok-card-main">
+                        <div>
+                            <span class="wok-label">Arma tu Wok personalizado</span><br>
+                            <span class="wok-main-price">$3.990</span>
+                        </div>
+                        <button class="add-btn-floating wok-add-btn" style="position: relative; top: 0; right: 0;">+</button>
+                    </div>
+                    <p class="wok-include-text">(Incluye: 1 Carbohidrato + 1 Salsa + 1 Proteína)</p>
+                    
+                    <div class="wok-options-grid">
+                        <div class="wok-option-column">
+                            <h4>1. Carbohidratos</h4>
+                            <ul>
+                                <li>Pasta</li>
+                                <li>Arroz</li>
+                                <li>Pasta Integral</li>
+                            </ul>
+                        </div>
+                        <div class="wok-option-column">
+                            <h4>2. Salsas</h4>
+                            <ul>
+                                <li>Blanca</li>
+                                <li>Tomate</li>
+                                <li>Mixta</li>
+                            </ul>
+                            <p class="wok-sub-note">Salsa adicional (Elige 1): Soya o Teriyaki</p>
+                        </div>
+                        <div class="wok-option-column">
+                            <h4>3. Proteínas</h4>
+                            <ul>
+                                <li>Carne</li>
+                                <li>Pollo</li>
+                                <li>Champiñón</li>
+                                <li>Vegetales Salteados</li>
+                                <li>Choclo</li>
+                                <li>Aceituna</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="menu-category">
+                <h3 class="category-title">ESPECIALIDADES</h3>
+                <div class="menu-grid" id="grid-especialidades">
+                    </div>
+            </div>
+
+            <div class="menu-category">
+                <h3 class="category-title">BEBIDAS</h3>
+                <div class="menu-grid" id="grid-bebidas">
+                    </div>
+            </div>
+
+            <div class="menu-category">
+                <h3 class="category-title">EXTRAS</h3>
+                <div class="menu-grid" id="grid-extras">
+                    </div>
+            </div>
+
+            <!-- =========================================
+             Estructura del Carrito de Compras
+             ========================================= -->
+        
+            <!-- Botón flotante -->
+            <button id="cart-float-btn" class="cart-float-btn seccion-oculta" onclick="toggleCart()">
+                Ver Pedido (<span id="cart-count">0</span>)
+            </button>
+
+            <!-- Ventana modal del carrito -->
+            <div id="cart-modal" class="cart-modal seccion-oculta">
+                <div class="cart-content">
+                    <header class="cart-header">
+                        <h3>Tu Pedido</h3>
+                        <button onclick="toggleCart()" class="close-btn">X</button>
+                    </header>
+                    
+                    <div id="cart-items" class="cart-items">
+                        <!-- Los productos seleccionados se insertarán aquí mediante JavaScript -->
+                    </div>
+                    
+                    <div class="cart-footer">
+                        <div class="cart-total">Total: $<span id="cart-total-price">0</span></div>
+                        <!-- IMPORTANTE: Modifica el número de teléfono en el archivo JavaScript -->
+                        <button onclick="sendWhatsApp()" class="whatsapp-btn">Pedir por WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+
+    <!-- Lógica de control -->
+    <script>
+        // Lógica de visualización de apartados
+        function mostrarCarta() {
+            document.getElementById('seccion-enlaces').classList.add('seccion-oculta');
+            document.getElementById('seccion-carta').classList.remove('seccion-oculta');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function mostrarEnlaces() {
+            document.getElementById('seccion-carta').classList.add('seccion-oculta');
+            document.getElementById('seccion-enlaces').classList.remove('seccion-oculta');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // =========================================
+        // Conexión con Google Sheets
+        // =========================================
+        
+        // PEGA AQUÍ EL LINK CSV QUE COPIASTE DE GOOGLE SHEETS
+        const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTyVpfPrVQwyaZmgPACch4JR2xApt67ZXPOhGmKGCPpkIUHkWKIivloaluxTC9o9RyVJ1bGw2eRZy2j/pub?output=csv'; 
+
+        document.addEventListener("DOMContentLoaded", () => {
+            cargarProductosDesdeExcel();
+            configurarBotonWokEstatico();
+        });
+
+        function cargarProductosDesdeExcel() {
+            Papa.parse(SHEET_CSV_URL, {
+                download: true,
+                header: true,
+                complete: function(results) {
+                    renderizarMenu(results.data);
+                }
+            });
+        }
+
+        function renderizarMenu(productos) {
+            const gridEspecialidades = document.getElementById('grid-especialidades');
+            const gridBebidas = document.getElementById('grid-bebidas');
+            const gridExtras = document.getElementById('grid-extras');
+
+            productos.forEach(prod => {
+                // Saltar filas vacías
+                if (!prod.Nombre || !prod.Precio) return; 
+
+                const precioNum = parseInt(prod.Precio);
+                const precioFormateado = precioNum.toLocaleString('es-CL');
+
+                const cardHTML = `
+                    <div class="menu-card">
+                        <img src="${prod.Imagen}" alt="${prod.Nombre}" class="card-img">
+                        <div class="card-overlay">
+                            <button class="add-btn-floating dynamic-add-btn" onclick="addToCart('${prod.Nombre}', ${precioNum})">+</button>
+                            <h4 class="card-item-title">${prod.Nombre}</h4>
+                            <p class="card-item-desc">${prod.Descripcion}</p>
+                            <span class="card-item-price">$${precioFormateado}</span>
+                        </div>
+                    </div>
+                `;
+
+                // Clasificar en su contenedor correspondiente
+                const categoria = prod.Categoria.trim().toUpperCase();
+                if (categoria === 'ESPECIALIDADES') gridEspecialidades.innerHTML += cardHTML;
+                if (categoria === 'BEBIDAS') gridBebidas.innerHTML += cardHTML;
+                if (categoria === 'EXTRAS') gridExtras.innerHTML += cardHTML;
+            });
+        }
+
+        function configurarBotonWokEstatico() {
+            // Configurar únicamente el botón del "Arma tu Wok" que dejamos fijo en HTML
+            const wokBtn = document.querySelector('.wok-add-btn');
+            if (wokBtn) {
+                wokBtn.addEventListener('click', (e) => {
+                    const container = e.target.closest('.wok-card-main');
+                    const name = "Arma tu Wok personalizado";
+                    const priceStr = container.querySelector('.wok-main-price').innerText;
+                    const price = parseInt(priceStr.replace('$', '').replace('.', ''));
+                    addToCart(name, price);
+                });
+            }
+        }
+
+        // =========================================
+        // Lógica del Carrito de Compras
+        // =========================================
+        
+        let cart = [];
+        // REEMPLAZAR AQUÍ: Coloca el número de WhatsApp del local (Ej: 56912345678)
+        const telefonoLocal = "569XXXXXXXX"; 
+
+        function addToCart(name, price) {
+            cart.push({ name: name, price: price });
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const countSpan = document.getElementById('cart-count');
+            const itemsContainer = document.getElementById('cart-items');
+            const totalSpan = document.getElementById('cart-total-price');
+            const floatBtn = document.getElementById('cart-float-btn');
+
+            countSpan.innerText = cart.length;
+            
+            if (cart.length > 0) {
+                floatBtn.classList.remove('seccion-oculta');
+            } else {
+                floatBtn.classList.add('seccion-oculta');
+                document.getElementById('cart-modal').classList.add('seccion-oculta');
+            }
+
+            itemsContainer.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                itemsContainer.innerHTML += `
+                    <div class="cart-item">
+                        <span>${item.name}</span>
+                        <span>$${item.price.toLocaleString('es-CL')}</span>
+                        <button onclick="removeFromCart(${index})" class="remove-btn">Eliminar</button>
+                    </div>
+                `;
+            });
+
+            totalSpan.innerText = total.toLocaleString('es-CL');
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
+            if (cart.length > 0) {
+                modal.classList.toggle('seccion-oculta');
+            }
+        }
+
+        function sendWhatsApp() {
+            if (cart.length === 0) return;
+
+            let text = "Hola Wok Placeres, quiero hacer el siguiente pedido:%0A%0A";
+            let total = 0;
+
+            cart.forEach(item => {
+                text += `- 1x ${item.name} ($${item.price.toLocaleString('es-CL')})%0A`;
+                total += item.price;
+            });
+
+            text += `%0ATotal a pagar: $${total.toLocaleString('es-CL')}%0A%0AQuedo atento para coordinar.`;
+
+            const url = `https://wa.me/${telefonoLocal}?text=${text}`;
+            window.open(url, '_blank');
+        }
+    </script>
+
+</body>
+</html>
